@@ -10,11 +10,11 @@ var PANEL_MODELS = {
 const PANEL_EFFICIENCY_AVG = 0.153;
 const DC_TO_AC_EFFICIENCY = 0.85;
 
-var lastYearValues = [];
-var last5YearsAvgValues = [];
-var timeAxisValues = [];
+function computePotentialOnDemand(lat, long) {
+  var lastYearValues = [];
+  var last5YearsAvgValues = [];
+  var timeAxisValues = [];
 
-$(document).ready(function () {
   d3.csv("/data/ClujCenter_5y_Daily.csv", function(data) {
     addEnergyPotential(data);
 
@@ -33,8 +33,6 @@ $(document).ready(function () {
     })
     .entries(data);
 
-    console.log(values);
-
     lastYearValues = values.filter(e => e.year  == 2017).map(e => e.total);
     timeAxisValues = values.filter(e => e.year  == 2017).map(e => e.month + " " + (e.year % 2000));
 
@@ -45,11 +43,10 @@ $(document).ready(function () {
       last5YearsAvgValues.push(Math.round(d3.mean(months, function(d) { return d.total; })));
     })
     .entries(values);
-    console.log(last5YearsAvgValues);
 
-    drawChart();
+    drawChart(timeAxisValues, lastYearValues, last5YearsAvgValues);
   });
-});
+}
 
 var addEnergyPotential = function (data) {
   data.forEach(function(d) {
@@ -71,7 +68,7 @@ var houseHoldFunction = function (irradiation, zenithAngle, tiltAngle) {
   return totalEnergyPerSqrM;
 }
 
-var drawChart = function() {
+var drawChart = function(timeAxisValues, lastYearValues, last5YearsAvgValues) {
   Highcharts.chart('home-container', {
     chart: {
       type: 'column'
