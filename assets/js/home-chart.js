@@ -33,14 +33,14 @@ function computePotentialOnDemand(lat, long) {
     })
     .entries(data);
 
-    lastYearValues = values.filter(e => e.year  == 2017).map(e => e.total);
+    lastYearValues = values.filter(e => e.year  == 2017).map(e => Math.round(e.total/1000 * 10) / 10);
     timeAxisValues = values.filter(e => e.year  == 2017).map(e => e.month + " " + (e.year % 2000));
 
     d3.nest().key(function(d) {
       return d.month;
     })
     .rollup(function (months) {
-      last5YearsAvgValues.push(Math.round(d3.mean(months, function(d) { return d.total; })));
+      last5YearsAvgValues.push(Math.round(Math.round(d3.mean(months, function(d) { return d.total; })) / 1000 * 10) / 10);
     })
     .entries(values);
 
@@ -74,7 +74,7 @@ var drawChart = function(timeAxisValues, lastYearValues, last5YearsAvgValues) {
       type: 'column'
     },
     title: {
-      text: 'Mothly average power generation in Wh/m2'
+      text: 'Mothly average power generation in KWh/m2'
     },
     
     xAxis: {
@@ -82,12 +82,12 @@ var drawChart = function(timeAxisValues, lastYearValues, last5YearsAvgValues) {
     },
     yAxis: {
       title: {
-        text: 'Wh/m2'
+        text: 'KWh/m2'
       }
     },
     tooltip: {
       shared: true,
-      valueSuffix: ' Wh/m2'
+      valueSuffix: ' KWh/m2'
     },
     credits: {
       enabled: false
