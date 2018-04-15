@@ -40,5 +40,5 @@ function changePeriod() {
 }
 
 function calculateColor() {
-  
+
 }
