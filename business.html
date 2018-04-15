@@ -40,6 +40,18 @@
         <div class="collapse navbar-collapse" id="navigation-example">
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
+                    <a href="#map" id="mapLink">
+                        <i class="material-icons">map</i>
+                            Map
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#dashboard" id="dashboardBtn">
+                        <i class="material-icons">dashboard</i>
+                        Designer
+                    </a>
+                </li>
+                <li class="">
                     <a href="profile-page.html">
                         <i class="material-icons">account_circle</i>
                         Profile
@@ -54,8 +66,44 @@
     <div class="header header-filter" style="background-color: #9c27b0 !important; height: 150px; !important;"></div>
 
     <div class="main main-raised">
-        <div class="profile-content">
+        <div class="profile-content" id="mapview">
             <div id="business-map" class="" style="height: 915px; width: 100%;"></div>
+            <div id="legend" style="padding: 0 10px; background-color: white">
+                <h3 id="max" style="font-weight: bold; color: #9c27b0 ">35 KW</h3>
+                <img src="./assets/img/gradient.png" alt="" height="180px;" style="margin-left: 15px;">
+                <h3 id="min" style="font-weight: bold; color: #9c27b0 ">2 KW</h3>
+            </div>
+        </div>
+        <div class="profile-content" id="designer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 ml-auto mr-auto">
+                        <div class="profile-tabs">
+                            <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist" style="margin-left: 40%;">
+                                <li class="nav-item active">
+                                    <a class="nav-link " href="#works" role="tab" data-toggle="tab">
+                                        <i class="material-icons">palette</i> Roof
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
+                                        <i class="material-icons">home</i> Installation
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content tab-space">
+
+                    <div class="tab-pane active text-center gallery" id="works">
+                        <img src="./assets/img/roof.png" alt="" style="width: auto; height: 500px;">
+                    </div>
+                    <div class="tab-pane text-center gallery" id="favorite">
+                        <img src="./assets/img/scheme.png" alt="" style="width: auto; height: 500px;">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
